@@ -1,11 +1,15 @@
 package coches;
 
 import java.util.ArrayList;
+import java.util.InputMismatchException;
+import java.util.Scanner;
+
 import javax.xml.bind.annotation.*;
 @XmlRootElement(name="auto")
 @XmlType(propOrder = {"identificacion","marca", "modelo", "año", "color", "tipo_motor", "cilindrada", "potencia", "transmision"})
 @XmlAccessorType(XmlAccessType.FIELD)
 public class Auto {
+	private static Scanner scannerauto = new Scanner(System.in);
 	@XmlAttribute(name = "id", required = true)
 	private String identificacion;
 	//@XmlElement(name = "marca")
@@ -39,6 +43,18 @@ public class Auto {
 		this.cilindrada = cilindrada;
 		this.potencia = potencia;
 		this.transmision = transmision;
+	}
+	
+	public Auto(Transmision transmision, String identificador) {
+		this.transmision = transmision;
+		this.identificacion = identificador;
+		this.crearMarca();
+		this.crearModelo();
+		this.crearAño();
+		this.crearColor();
+		this.crearTipo_motor();
+		this.crearCilindrada();
+		this.crearPotencia();
 	}
 	
 	
@@ -97,6 +113,54 @@ public class Auto {
 	public void setTransmision(Transmision transmision) {
 		this.transmision = transmision;
 	}
+	
+	
+	public void crearMarca() {
+		System.out.println("De que marca es el auto");
+		this.marca = scannerauto.nextLine();
+	}
+	
+	public void crearModelo() {
+        System.out.println("Que modelo es el auto");
+        this.modelo = scannerauto.nextLine();
+    }
+	
+	public void crearAño() {
+		try {
+		System.out.println("De que año es el auto");
+        this.año = scannerauto.nextInt();
+        scannerauto.nextLine();
+		} catch (InputMismatchException e) {
+			System.out.println("Debe introducir un numero");
+            scannerauto.nextLine();
+            this.crearAño();
+		};
+	}
+
+	public void crearColor() {
+        System.out.println("De que color es el auto");
+        this.color = scannerauto.nextLine();
+    }
+	
+	public void crearTipo_motor() {
+		System.out.println("Que tipo de motor tiene el auto");
+        this.tipo_motor = scannerauto.nextLine();;
+	}
+	
+	public void crearCilindrada() {
+		System.out.println("De que tipo de cilindrada es el auto");
+        this.cilindrada = scannerauto.nextLine();;
+	}
+	
+	public void crearPotencia() {
+		System.out.println("Que potencia tiene el auto");
+        this.potencia = scannerauto.nextLine();;
+	}
+	
+	
+	
+	
+	
 	
 	public void imprimirAuto() {
 		System.out.println();

@@ -1,0 +1,83 @@
+
+import coches.Autos;
+import coches.Auto;
+import coches.Transmision;
+import java.io.*;
+import java.util.*;
+import javax.xml.bind.*;;
+
+public class main {
+
+	public static void main(String[] args) {
+		
+		try {
+
+			// Leer xml
+			JAXBContext conexto;
+			conexto = JAXBContext.newInstance(Autos.class);
+			Unmarshaller um = conexto.createUnmarshaller();
+			Autos coches = (Autos) um.unmarshal (new File("src\\main\\resources\\Coches.xml"));
+			coches.imprimirAutos();
+
+			//Preparacion para leer y escribir xml (En uno nuevo para mantener el base)
+
+			Marshaller m = conexto.createMarshaller();
+			m.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE); //Para que escriba el documento indentado 
+			m.marshal(coches, new File("src\\main\\resources\\Coches1.xml"));
+			
+			try {
+				Boolean consola = true;	
+				while (consola == true) {
+					Scanner entrada = new Scanner(System.in);
+					System.out.println("Porfavor, elija una de las siguientes opciones mediante el uso de números enteros");
+					System.out.println("1. Mostrar el catálogo entero.\n" + "2. Añadir nuevos coches al catálogo.\n" 
+					+ "3. Buscar coches mediante el tipo de marca.\n" + "4. Salir de la consola.");
+					int numero = entrada.nextInt();
+					
+			        
+					switch (numero) {
+					    case 1:
+					    	coches.imprimirAutos();
+                            break;
+                        case 2:
+                        	Transmision transmision = new Transmision(1);
+                        	System.out.println(transmision);
+                        	break;
+                        case 3:
+                        	break;
+                        case 4:
+                        	consola = false;
+                            break;
+                        default:
+                        	System.out.println("Procure que el dato que hayas insertado este dentro de las opciones posibles");
+					}
+					//entrada.close();
+				}	
+			} catch (InputMismatchException e) {
+				System.out.println("Procure que el dato que hayas insertado sea un número entero");
+			}
+			
+			
+
+
+			Transmision transmision1 = new Transmision("manual", 20); 
+			Auto auto1 = new Auto("003", "Mustang", "Nuevo_Modelo", 2024, "verde", "V10", "4.5", "650", transmision1);
+			coches.añadirAutos(auto1);
+
+
+			//Imprimir mediante xml
+			m.marshal(coches, System.out);
+
+			//Mostrar mediante el metodo de autos
+			coches.imprimirAutos();
+
+
+			//Buscar datos en el xml		
+		} catch (JAXBException | InputMismatchException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
+
+}

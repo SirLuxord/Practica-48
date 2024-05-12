@@ -27,16 +27,29 @@
         </transmision>
     </auto>
     <auto id="003">
-        <marca>Mustang</marca>
-        <modelo>Nuevo_Modelo</modelo>
-        <año>2024</año>
-        <color>verde</color>
-        <tipo_motor>V10</tipo_motor>
-        <cilindrada>4.5</cilindrada>
-        <potencia>650</potencia>
+        <marca>saddsasad</marca>
+        <modelo>asdasddsadsad</modelo>
+        <año>12321</año>
+        <color>sdaadsdas</color>
+        <tipo_motor>asdggdas</tipo_motor>
+        <cilindrada>sadggdsa</cilindrada>
+        <potencia>213312</potencia>
         <transmision>
             <tipo>manual</tipo>
-            <velocidades>20</velocidades>
+            <velocidades>12</velocidades>
+        </transmision>
+    </auto>
+    <auto id="004">
+        <marca>hola</marca>
+        <modelo>asddassd</modelo>
+        <año>123321</año>
+        <color>morado</color>
+        <tipo_motor>124</tipo_motor>
+        <cilindrada>213123</cilindrada>
+        <potencia>123321</potencia>
+        <transmision>
+            <tipo>automática</tipo>
+            <velocidades>123321</velocidades>
         </transmision>
     </auto>
 </autos>
